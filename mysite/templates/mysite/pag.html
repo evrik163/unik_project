@@ -1,0 +1,24 @@
+{% extends 'mysite/new.html' %}
+{% block content %}
+
+<div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    <ol>
+    {% for post in page_obj %}
+        <li>
+            <p>{{post}}</p>
+        </li>
+    {% endfor %}
+    </ol>
+
+    <ul>
+    {% for post in page_obj.paginator.page_range %}
+        <li>
+            <p>
+            <a href="?page={{ post }}">{{post}}</a>
+            </p>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

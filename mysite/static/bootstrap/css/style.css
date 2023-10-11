@@ -1,0 +1,34 @@
+.wrap {
+  border: solid; 
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  border: solid; 
+  display: block;
+  width: 1000px;
+  height: 500px;
+  background: #ddd;
+}
+
+.modal video, canvas {
+    position: relative;
+    top: 20%;
+      border: solid; 
+    margin: 100;
+    left: 10%;
+    border: solid;
+}
+
+.modal button {
+    position: relative;
+    top: 40%;
+    height: 30px;
+    right: 35%;
+}

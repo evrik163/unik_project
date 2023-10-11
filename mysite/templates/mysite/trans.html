@@ -1,0 +1,30 @@
+{% extends 'mysite/new.html' %}
+{% block trans %}
+<div class="container min-vh-100 d-flex justify-content-center align-items-center flex-column">
+
+    <form method="GET" action="{% url 'trans' %}">
+        <label id="input">Введите фразу для перевода</label>
+        <textarea id="input" name="string" required maxlength="100"></textarea>
+        <fieldset>
+          <legend>Выберите тип перевода:</legend>
+              <div>
+                <input type="radio" id="enru" name="lang" value="ru"/>
+                <label for="enru">С английского на русский</label>
+              </div>
+              <div>
+                <input type="radio" id="ruen" name="lang" value="en" />
+                <label for="ruen">С русского на английский</label>
+              </div>
+        </fieldset>
+        <button>Перевести</button>
+    </form>
+
+    {% if res %}
+    <div>
+        <label for="res">Перевод:</label>
+        <p id="res"> {{res}} </p>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

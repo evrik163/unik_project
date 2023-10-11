@@ -1,0 +1,22 @@
+{% extends 'mysite/new.html' %}
+{% block machine %}
+<div class="container min-vh-100 d-flex justify-content-center align-items-center flex-column">
+
+    <form method='POST' action="{% url 'machine' %}">
+        {% csrf_token %}
+        {{res_form}}
+        <button>Отправить</button>
+    </form>
+    
+    <form method='GET' action="{% url 'list' %}">
+        <button>Получить список результатов</button>
+
+    {% if res %}
+    <div>
+        <label for="res">Цена:</label>
+        <p id="res">{{res}}</p>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

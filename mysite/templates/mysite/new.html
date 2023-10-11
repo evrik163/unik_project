@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head> 
+    <title>Главная страцница</title>
+</head> 
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a href='{% url "login" %}'class="navbar-brand">Навигационная панель</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+<button type="button" id="streambutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Войти</button>
+            </li>
+            <li class="nav-item">
+<button type="button" id="streambutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Регистрация</button> 
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'workflow' %}">Пагинация</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'trans' %}">Переводчик</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog' %}">Блог по тематике магистерской работы</a>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'machine' %}">Машинное обучение</a>
+            </li>
+        </div>
+      </div>
+    </nav>
+
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Авторизация</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <form method=POST action='{% url "login" %}'>
+            {% csrf_token %}
+            {{auth_form}}
+            <button>Подтвердить</button>
+        </form>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Регистрация</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <form method=POST action='{% url "register" %}'>
+            {% csrf_token %}
+            {{reg_form}}
+            <button>Подтвердить</button>
+        </form>
+      </div>
+      </div>
+    </div>
+</div>
+
+
+    {% if hi %}
+    <div class="container min-vh-100 d-flex justify-content-center align-items-center">
+    <h1>Здравствуйте! Это университетский проект!</h1>
+    <div>
+    {% endif %}
+
+    {% block blog %}
+    {% endblock %}
+    {% block trans %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block machine %}
+    {% endblock %}
+    {% block show %}
+    {% endblock %}
+
+
+<link href="{% static 'bootstrap/css/bootstrap.css'%}" rel="stylesheet">
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.js'%}"></script>
+    </body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'mysite/new.html' %}
+{% block show %}
+<div class="container min-vh-100 d-flex justify-content-center align-items-center flex-column">
+    <ol>
+    {% for obj in res %}
+        <li> Area: {{obj.area}}, price: {{obj.price}}</li>
+    {% endfor %}
+    </ol>
+<div>
+{% endblock %}
