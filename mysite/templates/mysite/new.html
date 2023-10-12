@@ -16,10 +16,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-<button type="button" id="streambutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Войти</button>
+<button id="streambutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Войти</button>
             </li>
             <li class="nav-item">
-<button type="button" id="streambutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Регистрация</button> 
+<button id="streambutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Регистрация</button> 
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'workflow' %}">Пагинация</a>
@@ -42,13 +42,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Авторизация</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        <button class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
         <form method=POST action='{% url "login" %}'>
             {% csrf_token %}
             {{auth_form}}
-            <button>Подтвердить</button>
+            <button class="btn btn-primary">Подтвердить</button>
         </form>
           </div>
       </div>
@@ -67,7 +67,7 @@
         <form method=POST action='{% url "register" %}'>
             {% csrf_token %}
             {{reg_form}}
-            <button>Подтвердить</button>
+            <button class="btn btn-primary">Подтвердить</button>
         </form>
       </div>
       </div>

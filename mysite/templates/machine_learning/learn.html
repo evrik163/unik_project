@@ -2,18 +2,32 @@
 {% block machine %}
 <div class="container min-vh-100 d-flex justify-content-center align-items-center flex-column">
 
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    {% endif %}
+<div class="btn-group" role="group">
     <form method='POST' action="{% url 'machine' %}">
         {% csrf_token %}
-        {{res_form}}
-        <button>Отправить</button>
+        {% for obj in res_form %}
+        <p> <label class="form-label" for="{{ obj.id_for_label }}">{{obj.label}}:</label>{{obj}}</p>
+        {% endfor %}
+        <button  class="btn btn-success">Отправить</button>
     </form>
     
-    <form method='GET' action="{% url 'list' %}">
-        <button>Получить список результатов</button>
 
+    <form method='get' action="{% url 'list' %}">
+        <button  class="btn btn-primary">Получить список результатов</button>
+    </form>
+
+    <form method='get' action="{% url 're' %}">
+        <button  class="btn btn-danger">Переобучить модель</button>
+    </form>
+</div>
     {% if res %}
     <div>
-        <label for="res">Цена:</label>
+        <label for="res">Категория:</label>
         <p id="res">{{res}}</p>
     </div>
     {% endif %}

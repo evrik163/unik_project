@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from machine_learning.models import Results
+from machine_learning.models import FinalRes
 from .models import Post
 
 
 admin.site.register(Post)
-admin.site.register(Results)
+admin.site.register(FinalRes)
