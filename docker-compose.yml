@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13.3
+    environment:
+       POSTGRES_DB: "unik_db"
+       POSTGRES_USER: "postgres"
+       POSTGRES_PASSWORD: "123"
+    ports:
+      - '5431:5431'
+    volumes: 
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local

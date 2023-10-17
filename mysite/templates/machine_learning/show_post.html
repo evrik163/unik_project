@@ -1,0 +1,20 @@
+{% extends 'mysite/new.html' %}
+{% block blog %}
+<div id='abs' class="container min-vh-100 d-flex justify-content-center align-items-center">
+    <div class="card text-start mb-3">
+      <div class="card-header">
+      <h3>{{post}}</h3>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{post.body}}</p>
+        <form method="{{method}}" action="{% url 'post' post.pk %}">
+        {% csrf_token %}
+        <button class="btn btn-primary">Перевод</button>
+        <form>
+      </div>
+      <div class="card-footer bg-transparent">
+      <h5>Автор поста: {{post.author}}</h5>
+      </div>
+    </div>
+</div>
+{% endblock %}

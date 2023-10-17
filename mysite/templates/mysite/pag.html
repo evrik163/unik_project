@@ -1,24 +1,30 @@
 {% extends 'mysite/new.html' %}
 {% block content %}
 
-<div class="container min-vh-100 d-flex justify-content-center align-items-center">
-    <ol>
+<div class="container min-vh-100 d-flex justify-content-center flex-column">
+<p><p>
     {% for post in page_obj %}
-        <li>
-            <p>{{post}}</p>
-        </li>
+    <div class="card text-start mb-3">
+      <div class="card-header">
+      <h3>{{post}}</h3>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{post.body}}</p>
+        <form method="GET" action="{% url 'post' post.pk %}">
+        <button class="btn btn-primary">Подробнее</button>
+        </form>
+      </div>
+      <div class="card-footer bg-transparent">
+      <h5>Автор поста: {{post.author}}</h5>
+      </div>
+    </div>
     {% endfor %}
-    </ol>
 
-    <ul>
-    {% for post in page_obj.paginator.page_range %}
-        <li>
-            <p>
-            <a href="?page={{ post }}">{{post}}</a>
-            </p>
+      <ul class="pagination">
+        {% for number in page_obj.paginator.page_range %}
+        <li class="page-item"><a class="page-link" href="?page={{number}}">{{number}}</a></li>
         </li>
-    {% endfor %}
-    </ul>
+        {% endfor %}
+      </ul>
 </div>
-
 {% endblock %}

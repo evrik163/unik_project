@@ -7,28 +7,29 @@
     <p>{{message}}</p>
     {% endfor %}
     {% endif %}
-<div class="btn-group" role="group">
-    <form method='POST' action="{% url 'machine' %}">
+    <form method='POST' id='main' action="{% url 'machine' %}">
         {% csrf_token %}
         {% for obj in res_form %}
         <p> <label class="form-label" for="{{ obj.id_for_label }}">{{obj.label}}:</label>{{obj}}</p>
         {% endfor %}
-        <button  class="btn btn-success">Отправить</button>
     </form>
     
 
+<div class="btn-group-vertical" role="group">
+    <button  form='main' class="btn btn-success">Отправить</button>
     <form method='get' action="{% url 'list' %}">
         <button  class="btn btn-primary">Получить список результатов</button>
     </form>
-
-    <form method='get' action="{% url 're' %}">
-        <button  class="btn btn-danger">Переобучить модель</button>
+    <form method='get' id='ret' action="{% url 're' %}">
     </form>
+    <button  form='ret' class="btn btn-danger">Переобучить модель</button>
+
+
+
 </div>
     {% if res %}
     <div>
-        <label for="res">Категория:</label>
-        <p id="res">{{res}}</p>
+        <p id="res">Категория: {{res.cat}} - {{res.body}}</p>
     </div>
     {% endif %}
 

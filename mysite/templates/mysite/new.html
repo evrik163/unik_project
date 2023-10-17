@@ -5,7 +5,8 @@
     <title>Главная страцница</title>
 </head> 
 <body>
-
+<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.bundle.js'%}"></script>
+<link href="{% static 'bootstrap/css/bootstrap.css'%}" rel="stylesheet">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -15,26 +16,41 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% if user.is_authenticated %}
             <li class="nav-item">
-<button id="streambutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Войти</button>
+              <a class="nav-link">Привет {{user}}!</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href='{% url "logout" %}'>Выйти из аккаунта</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+<button id="streambutton" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Войти</button>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link">  </a>
             </li>
             <li class="nav-item">
 <button id="streambutton" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Регистрация</button> 
             </li>
+            {% endif %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'workflow' %}">Пагинация</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'trans' %}">Переводчик</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'blog' %}">Блог по тематике магистерской работы</a>
-             <li class="nav-item">
-              <a class="nav-link" href="{% url 'machine' %}">Машинное обучение</a>
-            </li>
+              <a class="nav-link" href="{% url 'workflow' %}">Блог по тематике магистерской работы</a>
+              </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown">Инструменты</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'trans' %}">Переводчик</a></li>
+              <li><a class="dropdown-item" href="{% url 'machine' %}">Машинное обучение</a></li>
+              </ul>
+            </li> 
+        </ul>
+
         </div>
       </div>
     </nav>
+
 
 
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -48,6 +64,7 @@
         <form method=POST action='{% url "login" %}'>
             {% csrf_token %}
             {{auth_form}}
+            <p></p>
             <button class="btn btn-primary">Подтвердить</button>
         </form>
           </div>
@@ -67,6 +84,7 @@
         <form method=POST action='{% url "register" %}'>
             {% csrf_token %}
             {{reg_form}}
+            <p></p>
             <button class="btn btn-primary">Подтвердить</button>
         </form>
       </div>
@@ -93,7 +111,5 @@
     {% endblock %}
 
 
-<link href="{% static 'bootstrap/css/bootstrap.css'%}" rel="stylesheet">
-<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.js'%}"></script>
     </body>
 </html>

@@ -2,7 +2,7 @@ from django import forms
 from .models import FinalRes 
 
 class ResultsForm(forms.Form):
-    battery_power = forms.CharField(label='Введите мощность батареи в мАч',
+    battery_power = forms.DecimalField(label='Введите мощность батареи в мАч',
                                    widget=forms.TextInput(attrs={'class': "form-control"}))
     int_memory = forms.CharField(label='Введите количество единиц памяти(ПЗУ ГБ)',
                                 widget=forms.TextInput(attrs={'class': "form-control"}))
