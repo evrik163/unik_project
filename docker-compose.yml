@@ -1,15 +1,36 @@
-version: '3.8'
+version: '3.1'
+
 services:
+
   db:
-    image: postgres:13.3
+    image: postgres
+    restart: always
+    container_name: django_db
     environment:
-       POSTGRES_DB: "unik_db"
-       POSTGRES_USER: "postgres"
-       POSTGRES_PASSWORD: "123"
+      POSTGRES_DB: unik_db
+      PDDATA: /home/pavel/test_d
+      POSTGRES_PASSWORD: 123
     ports:
-      - '5431:5431'
-    volumes: 
-      - db:/var/lib/postgresql/data
-volumes:
-  db:
-    driver: local
+        - "1234:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    tty: true
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+     - DB_HOST=unik_db
+     - DB_PORT=1234
+     - DJANGO_SUPERUSER_USERNAME=pavel
+     - DJANGO_SUPERUSER_PASSWORD=123
+     - DJANGO_SUPERUSER_EMAIL=example@main.com
+    ports:
+     - "8001:8000"
+    depends_on:
+      - db

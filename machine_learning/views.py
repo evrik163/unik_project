@@ -29,7 +29,7 @@ def homere(request):
                  }
         lst = [obj for obj in clean.values()]
         model = load('machine_learning/final.joblib')
-        clean['category'] = int(model.predict(lst))
+        clean['category'] = int(model.predict([lst]))
         FinalRes(**clean).save()
         res = {'cat' : clean["category"], 'body': category[clean["category"]]}
         return render(request, TEMPLATE, {'res': res, **forms})
