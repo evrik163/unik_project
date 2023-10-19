@@ -1,10 +1,26 @@
 {% extends 'mysite/new.html' %}
 {% block show %}
-<div class="container min-vh-100 d-flex justify-content-center align-items-center flex-column">
-    <ol>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">battery_power</th>
+      <th scope="col">int_memory</th>
+      <th scope="col">modile_wt</th>
+      <th scope="col">category</th>
+    </tr>
+  </thead>
+    <tbody>
     {% for obj in res %}
-        <li> Area: {{obj.area}}, price: {{obj.price}}</li>
+    <tr>
+        <th scope="row">{{obj.pk}}</th>
+        <td>{{obj.battery_power}}</td>
+        <td>{{obj.int_memory}}</td>
+        <td>{{obj.mobile_wt}}</td>
+        <td>{{obj.category}}</td>
+    </tr>
     {% endfor %}
-    </ol>
-<div>
+  </tbody>
+</table>
 {% endblock %}

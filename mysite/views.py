@@ -1,6 +1,6 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.urls import reverse_lazy
@@ -14,10 +14,6 @@ auth_form = CustomAuthForm()
 reg_form = CustomRegForm()
 forms = {"auth_form": auth_form, "reg_form": reg_form}
 TEMPLATE = 'mysite/new.html'
-
-
-def blog_send(request):
-    return render(request, 'mysite/blog.html', forms)
 
 
 def paging(request):
@@ -35,6 +31,11 @@ def test(request):
         res = translate(string, lang)
         return render(request, 'mysite/trans.html', {**forms, 'res': res})
     return render(request, 'mysite/trans.html', forms)
+
+
+def logout_l(request):
+    logout(request)
+    return redirect('/')
 
 
 class LoginUser(LoginView):

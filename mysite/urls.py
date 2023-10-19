@@ -24,6 +24,6 @@ urlpatterns = [
     path('', views.LoginUser.as_view(), name="login"),
     path('workflow/', views.paging, name="workflow"),
     path('test/', views.test, name="trans"),
-    path('blog/', views.blog_send, name='blog'),
     path('machine/', include('machine_learning.urls')),
+    path('logout/', views.logout_l, name='logout')
 ]

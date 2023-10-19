@@ -1,0 +1,7 @@
+Django
+sqlalchemy
+pandas
+joblib
+scikit-learn
+deep_translator
+psycopg2
